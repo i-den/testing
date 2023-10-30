@@ -2,7 +2,7 @@ package com.idenchev.testing;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;import java.util.LinkedList;import static org.mockito.Mockito.*;
 
 @DisplayName("Demonstration Tests")
 public class DemonstrationTests {
@@ -37,6 +37,25 @@ public class DemonstrationTests {
                     );
                 }
         );
+    }
+
+    @Test
+    void someMockitoTest() {
+        LinkedList mockedList = mock(LinkedList.class);
+
+        //stubbing
+        when(mockedList.get(0)).thenReturn("first");
+        when(mockedList.get(1)).thenThrow(new RuntimeException());
+
+        Assertions.assertEquals("first", mockedList.get(0));
+        Assertions.assertThrows(RuntimeException.class, () -> mockedList.get(1));
+
+        verify(mockedList).get(0);
+        verify(mockedList).get(1);
+
+        verify(mockedList).get(assertArg(s -> {
+            Assertions.assertEquals("first", s);
+        }));
     }
 
 }

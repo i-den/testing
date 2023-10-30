@@ -2,11 +2,6 @@
 
 JUnit concepts and usage cheatsheet
 
----
-
-### Table of Contents
-
-
 --- 
 
 ### JUnit 5
